@@ -37,7 +37,7 @@ async def user_hash(user_id: str):
         (user_id + os.environ.get("USER_SALT", "")).encode()
     ).hexdigest()
     end = time.time()
-    graphs['h'].observe(end - start)
+    #graphs['h'].observe(end - start)
     return hash
     
 

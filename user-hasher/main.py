@@ -17,8 +17,8 @@ app = FastAPI()
 logger = logging.getLogger("uvicorn.error")
 
 graphs = {}
-graphs['c'] = Counter('Req operation total', 'total number of processed req')
-graphs['h'] = Histogram('Req duration', 'Histogram for duration is sec', buckets=(.1,.5,1,2,3,5))
+graphs['c'] = Counter('request_total', 'total number of processed req')
+graphs['h'] = Histogram('http_access_time', 'Histogram for duration is sec')
 # Load and log APP_VERSION
 APP_VERSION = os.environ.get("APP_VERSION", "production")
 logger.info(f"APP_VERSION={APP_VERSION}")
@@ -32,7 +32,7 @@ async def version():
 @app.get("/user_hash")
 async def user_hash(user_id: str):
     start = time.time()
-    graphs['c'].inc()
+    #graphs['c'].inc()
     hash = hashlib.sha1(
         (user_id + os.environ.get("USER_SALT", "")).encode()
     ).hexdigest()

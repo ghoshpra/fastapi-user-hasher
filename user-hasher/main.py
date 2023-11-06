@@ -47,4 +47,4 @@ async def request_count():
     res =[]
     for k,v in graphs.items():
         res.append()
-        return Response(res, mimetype="text/plain")
+    return Response(res, mimetype="text/plain")
